@@ -3,6 +3,8 @@ package com.example.administrator.mvp.base;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import butterknife.ButterKnife;
+
 /**
  *
  * @param <T>
@@ -20,10 +22,9 @@ public abstract class BaseActivity<T,V extends BasePresenter<T>> extends AppComp
         presenter=initPresenter();
         //view与presenter 绑定
         presenter.attach((T)this);
-        //抛出presenter子类调用里面的方法
-        getPresenter(presenter);
-        //初始化控件  可以使用注解方式find控件
-        initView();
+       //butterknife注解的使用  http://www.cnblogs.com/mengdd/p/4595973.html
+        // 此项目中仅用于findviewbyid
+        ButterKnife.inject(this);
         //初始化數據
         initDatas();
         //初始化事件
@@ -37,14 +38,9 @@ public abstract class BaseActivity<T,V extends BasePresenter<T>> extends AppComp
         presenter.dettach();
         super.onDestroy();
     }
-
-    public abstract void getPresenter(V presenter);
-
     public abstract int getActivityId();
 
     public abstract V initPresenter();
-
-    public abstract void initView();
 
     public abstract void initDatas();
 

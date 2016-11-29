@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by wangjingyun on 2016/11/23.
  */
@@ -24,16 +26,17 @@ public abstract class BaseFragment<T,V extends BasePresenter<T>> extends Fragmen
         presenter=initPresenter();
         //view与presenter绑定
         presenter.attach((T)this);
-        //presenter抛给子类
-        getPresenter(presenter);
+
+        ButterKnife.inject(view);
         return view;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //初始化数据
+        initDatas();
 
-        initView(view);
         //初始化事件
         initEvent();
     }
@@ -42,9 +45,7 @@ public abstract class BaseFragment<T,V extends BasePresenter<T>> extends Fragmen
 
     public abstract  V initPresenter();
 
-    public abstract void  getPresenter(V presenter);
-
-    public abstract void initView(View view);
+    public abstract void initDatas();
 
     public abstract void initEvent();
 

@@ -11,18 +11,29 @@ import com.example.administrator.mvp.fragment.OneFragment;
 import com.example.administrator.mvp.fragment.ThreeFragment;
 import com.example.administrator.mvp.fragment.TwoFragment;
 import com.example.administrator.mvp.presenter.MainActivityPresenter;
-import com.example.administrator.mvp.presenter.MainActivityPresenter.IHome;
+import com.example.administrator.mvp.presenter.listener.MainActivityPresenterListener;
 import com.zhy.autolayout.AutoLinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity<IHome, MainActivityPresenter> implements IHome {
+import butterknife.InjectView;
 
-    private AutoLinearLayout ll_one;
-    private AutoLinearLayout ll_two;
-    private AutoLinearLayout ll_three;
-    private ViewPager viewpager;
+public class MainActivity extends BaseActivity<MainActivityPresenterListener, MainActivityPresenter> implements MainActivityPresenterListener {
+
+
+    @InjectView(R.id.ll_one)
+    AutoLinearLayout ll_one;
+
+    @InjectView(R.id.ll_two)
+    AutoLinearLayout ll_two;
+
+    @InjectView(R.id.ll_three)
+    AutoLinearLayout ll_three;
+
+    @InjectView(R.id.viewpager)
+    ViewPager viewpager;
+
     private List<Fragment> fragmentList = new ArrayList<Fragment>();
     private MainFragmentPageAdapter pageAdapter;
 
@@ -34,22 +45,6 @@ public class MainActivity extends BaseActivity<IHome, MainActivityPresenter> imp
     @Override
     public MainActivityPresenter initPresenter() {
         return new MainActivityPresenter();
-    }
-
-    @Override
-    public void getPresenter(MainActivityPresenter presenter) {
-
-        //网络请求
-
-
-    }
-
-    @Override
-    public void initView() {
-        ll_one = (AutoLinearLayout) findViewById(R.id.ll_one);
-        ll_two = (AutoLinearLayout) findViewById(R.id.ll_two);
-        ll_three = (AutoLinearLayout) findViewById(R.id.ll_three);
-        viewpager = (ViewPager) findViewById(R.id.viewpager);
     }
 
     @Override
@@ -122,4 +117,13 @@ public class MainActivity extends BaseActivity<IHome, MainActivityPresenter> imp
         }
     }
 
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
 }

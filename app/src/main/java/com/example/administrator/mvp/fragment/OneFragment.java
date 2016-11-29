@@ -1,16 +1,15 @@
 package com.example.administrator.mvp.fragment;
 
-import android.view.View;
-
 import com.example.administrator.mvp.R;
 import com.example.administrator.mvp.base.BaseFragment;
 import com.example.administrator.mvp.presenter.OneFragmentPresenter;
+import com.example.administrator.mvp.presenter.listener.OneFragmentPresenterListener;
 
 /**
  * Created by wangjingyun on 2016/11/23.
  */
 
-public class OneFragment extends BaseFragment<OneFragmentPresenter.IFrag,OneFragmentPresenter> implements OneFragmentPresenter.IFrag{
+public class OneFragment extends BaseFragment<OneFragmentPresenterListener,OneFragmentPresenter> implements OneFragmentPresenterListener {
 
 
     public static OneFragment getInstance(){
@@ -29,15 +28,9 @@ public class OneFragment extends BaseFragment<OneFragmentPresenter.IFrag,OneFrag
     }
 
     @Override
-    public void getPresenter(OneFragmentPresenter presenter) {
+    public void initDatas() {
 
     }
-
-    @Override
-    public void initView(View view) {
-
-    }
-
     @Override
     public void initEvent() {
 

@@ -1,16 +1,15 @@
 package com.example.administrator.mvp.fragment;
 
-import android.view.View;
-
 import com.example.administrator.mvp.R;
 import com.example.administrator.mvp.base.BaseFragment;
 import com.example.administrator.mvp.presenter.TwoFragmentPresenter;
+import com.example.administrator.mvp.presenter.listener.TwoFragmentPresenterListener;
 
 /**
  * Created by Administrator on 2016/11/27.
  */
 
-public class TwoFragment extends BaseFragment<TwoFragmentPresenter.Two,TwoFragmentPresenter> implements TwoFragmentPresenter.Two{
+public class TwoFragment extends BaseFragment<TwoFragmentPresenterListener,TwoFragmentPresenter> implements TwoFragmentPresenterListener{
 
     public static TwoFragment getInstance(){
 
@@ -29,12 +28,7 @@ public class TwoFragment extends BaseFragment<TwoFragmentPresenter.Two,TwoFragme
     }
 
     @Override
-    public void getPresenter(TwoFragmentPresenter presenter) {
-
-    }
-
-    @Override
-    public void initView(View view) {
+    public void initDatas() {
 
     }
 
