@@ -7,9 +7,9 @@ import android.view.View;
 import com.example.administrator.mvp.R;
 import com.example.administrator.mvp.adapter.MainFragmentPageAdapter;
 import com.example.administrator.mvp.base.BaseActivity;
-import com.example.administrator.mvp.fragment.OneFragment;
-import com.example.administrator.mvp.fragment.ThreeFragment;
-import com.example.administrator.mvp.fragment.TwoFragment;
+import com.example.administrator.mvp.fragment.BookListFragment;
+import com.example.administrator.mvp.fragment.BookSearchFragment;
+import com.example.administrator.mvp.fragment.BookClassiFicationFragment;
 import com.example.administrator.mvp.presenter.MainActivityPresenter;
 import com.example.administrator.mvp.presenter.listener.MainActivityPresenterListener;
 import com.zhy.autolayout.AutoLinearLayout;
@@ -50,9 +50,9 @@ public class MainActivity extends BaseActivity<MainActivityPresenterListener, Ma
     @Override
     public void initDatas() {
         //添加fragment
-        fragmentList.add(OneFragment.getInstance());
-        fragmentList.add(TwoFragment.getInstance());
-        fragmentList.add(ThreeFragment.getInstance());
+        fragmentList.add(BookListFragment.getInstance());
+        fragmentList.add(BookClassiFicationFragment.getInstance());
+        fragmentList.add(BookSearchFragment.getInstance());
         pageAdapter = new MainFragmentPageAdapter(fragmentList, getSupportFragmentManager());
         viewpager.setAdapter(pageAdapter);
     }

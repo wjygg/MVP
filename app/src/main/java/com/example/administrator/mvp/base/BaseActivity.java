@@ -3,6 +3,9 @@ package com.example.administrator.mvp.base;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.administrator.mvp.MvpApplication;
+import com.example.administrator.mvp.utils.ApplicationUtil;
+
 import butterknife.ButterKnife;
 
 /**
@@ -25,6 +28,9 @@ public abstract class BaseActivity<T,V extends BasePresenter<T>> extends AppComp
        //butterknife注解的使用  http://www.cnblogs.com/mengdd/p/4595973.html
         // 此项目中仅用于findviewbyid
         ButterKnife.inject(this);
+        //将activity存入application中
+        ((MvpApplication)ApplicationUtil.getContext()).setActivitys(this);
+
         //初始化數據
         initDatas();
         //初始化事件
@@ -33,10 +39,10 @@ public abstract class BaseActivity<T,V extends BasePresenter<T>> extends AppComp
 
     @Override
     protected void onDestroy() {
-
-
         presenter.dettach();
         super.onDestroy();
+        //删除集合中的activity
+        ((MvpApplication)ApplicationUtil.getContext()).removeActivity(this);
     }
     public abstract int getActivityId();
 
