@@ -1,5 +1,7 @@
 package com.example.administrator.mvp.fragment;
 
+import android.widget.Toast;
+
 import com.example.administrator.mvp.R;
 import com.example.administrator.mvp.base.BaseFragment;
 import com.example.administrator.mvp.presenter.BookSearchFragmentPresenter;
@@ -19,7 +21,7 @@ public class BookSearchFragment extends BaseFragment<BookSearchfragmentPresenter
     }
     @Override
     public int getContentViewId() {
-        return R.layout.fragment_three;
+        return R.layout.fragment_booksearch;
     }
 
     @Override
@@ -30,6 +32,7 @@ public class BookSearchFragment extends BaseFragment<BookSearchfragmentPresenter
     @Override
     public void initDatas() {
 
+        Toast.makeText(getActivity(),"缓加载第三个页面",Toast.LENGTH_SHORT).show();
     }
 
 

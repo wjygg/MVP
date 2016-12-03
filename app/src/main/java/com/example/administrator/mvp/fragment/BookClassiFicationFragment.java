@@ -1,5 +1,7 @@
 package com.example.administrator.mvp.fragment;
 
+import android.widget.Toast;
+
 import com.example.administrator.mvp.R;
 import com.example.administrator.mvp.base.BaseFragment;
 import com.example.administrator.mvp.presenter.BookClassiFicationFragmentPresenter;
@@ -19,7 +21,7 @@ public class BookClassiFicationFragment extends BaseFragment<BookClassiFicationF
 
     @Override
     public int getContentViewId() {
-        return R.layout.fragment_two;
+        return R.layout.fragment_bookclassification;
     }
 
     @Override
@@ -31,6 +33,7 @@ public class BookClassiFicationFragment extends BaseFragment<BookClassiFicationF
     @Override
     public void initDatas() {
 
+        Toast.makeText(getActivity(),"缓加载第二个页面",Toast.LENGTH_SHORT).show();
     }
 
     @Override

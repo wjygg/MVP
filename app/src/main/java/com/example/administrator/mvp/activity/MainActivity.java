@@ -1,18 +1,18 @@
 package com.example.administrator.mvp.activity;
 
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.View;
+import android.support.v7.widget.Toolbar;
 
 import com.example.administrator.mvp.R;
 import com.example.administrator.mvp.adapter.MainFragmentPageAdapter;
 import com.example.administrator.mvp.base.BaseActivity;
+import com.example.administrator.mvp.fragment.BookClassiFicationFragment;
 import com.example.administrator.mvp.fragment.BookListFragment;
 import com.example.administrator.mvp.fragment.BookSearchFragment;
-import com.example.administrator.mvp.fragment.BookClassiFicationFragment;
 import com.example.administrator.mvp.presenter.MainActivityPresenter;
 import com.example.administrator.mvp.presenter.listener.MainActivityPresenterListener;
-import com.zhy.autolayout.AutoLinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,15 +21,11 @@ import butterknife.InjectView;
 
 public class MainActivity extends BaseActivity<MainActivityPresenterListener, MainActivityPresenter> implements MainActivityPresenterListener {
 
+    @InjectView(R.id.toolbar)
+    Toolbar toolbar;
 
-    @InjectView(R.id.ll_one)
-    AutoLinearLayout ll_one;
-
-    @InjectView(R.id.ll_two)
-    AutoLinearLayout ll_two;
-
-    @InjectView(R.id.ll_three)
-    AutoLinearLayout ll_three;
+    @InjectView(R.id.tablayout)
+    TabLayout tablayout;
 
     @InjectView(R.id.viewpager)
     ViewPager viewpager;
@@ -49,73 +45,32 @@ public class MainActivity extends BaseActivity<MainActivityPresenterListener, Ma
 
     @Override
     public void initDatas() {
+        //设置toolbar
+        toolbar.setTitle("我的简易书城");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        this.setSupportActionBar(toolbar);
+
         //添加fragment
-        fragmentList.add(BookListFragment.getInstance());
+        fragmentList.add(BookListFragment.getInstance("新书"));
         fragmentList.add(BookClassiFicationFragment.getInstance());
         fragmentList.add(BookSearchFragment.getInstance());
         pageAdapter = new MainFragmentPageAdapter(fragmentList, getSupportFragmentManager());
         viewpager.setAdapter(pageAdapter);
+        //tablayout 和viewpager关联
+        tablayout.setupWithViewPager(viewpager);
+        tablayout.getTabAt(0).setText("新书");
+        tablayout.getTabAt(1).setText("分类");
+        tablayout.getTabAt(2).setText("搜索");
     }
 
     @Override
     public void initEvent() {
 
-        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-            }
 
-            @Override
-            public void onPageSelected(int position) {
-                onSelect(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
-        ll_one.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewpager.setCurrentItem(0);
-            }
-        });
-        ll_two.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewpager.setCurrentItem(1);
-            }
-        });
-        ll_three.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewpager.setCurrentItem(2);
-            }
-        });
     }
 
-    public void onSelect(int position) {
 
-        switch (position) {
-            //滑動第一頁
-            case 0:
-
-                break;
-            //第二額
-            case 1:
-                viewpager.setCurrentItem(1);
-                break;
-            //第三個
-            case 3:
-                viewpager.setCurrentItem(2);
-                break;
-
-
-        }
-    }
 
     @Override
     public void showProgress() {

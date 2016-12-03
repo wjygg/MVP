@@ -55,7 +55,7 @@ public abstract class BaseFragment<T,V extends BasePresenter<T>> extends Fragmen
        //视图可见
         if(getUserVisibleHint()){
             isVisible=true;
-
+            lazyLoad();
         }else{
             isVisible=false;
         }

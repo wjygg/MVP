@@ -42,14 +42,14 @@ public class MvpApplication extends Application {
     }
 
     //添加activity
-    public void setActivitys(Activity activity){
+    public static void setActivitys(Activity activity){
 
         activitys.add(activity);
     }
 
     //删除activity
 
-    public  void removeActivity(Activity activity){
+    public  static void removeActivity(Activity activity){
 
             activitys.remove(activity);
     }
