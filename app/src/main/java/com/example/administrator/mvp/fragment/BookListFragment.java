@@ -43,5 +43,20 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
     @Override
     public void initEvent() {
 
+        //调用请求网络接口
+        presenter.getBookList("1","最新",1,10,"书本简介");
+
+
+    }
+
+    @Override
+    public void getData(String str) {
+        Toast.makeText(getActivity(),str,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onError(String str) {
+
+        Toast.makeText(getActivity(),str,Toast.LENGTH_SHORT).show();
     }
 }

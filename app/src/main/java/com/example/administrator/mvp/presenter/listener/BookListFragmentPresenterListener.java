@@ -5,4 +5,7 @@ package com.example.administrator.mvp.presenter.listener;
  */
 
 public interface BookListFragmentPresenterListener {
+    void getData(String str);
+
+    void onError(String str);
 }
