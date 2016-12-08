@@ -9,10 +9,11 @@ import com.example.administrator.mvp.presenter.listener.BookClassiFicationFragme
 
 public class BookClassiFicationFragmentPresenter extends BasePresenter<BookClassiFicationFragmentPresenterListener>{
 
-
     @Override
     public void attach(BookClassiFicationFragmentPresenterListener view) {
         super.attach(view);
+
+
     }
 
 

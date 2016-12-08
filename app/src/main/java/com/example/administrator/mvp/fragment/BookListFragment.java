@@ -39,6 +39,8 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
         Bundle bundle=getArguments();
         String tag=bundle.getString("tag");
         Toast.makeText(getActivity(),"缓加载第一个页面",Toast.LENGTH_SHORT).show();
+
+
     }
     @Override
     public void initEvent() {
