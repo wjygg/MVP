@@ -70,8 +70,6 @@ public class MainActivity extends BaseActivity<MainActivityPresenterListener, Ma
 
     }
 
-
-
     @Override
     public void showProgress() {
 

@@ -15,7 +15,7 @@ import com.example.administrator.mvp.presenter.listener.BookListFragmentPresente
 
 public class BookListFragment extends BaseFragment<BookListFragmentPresenterListener,BookListFragmentPresenter> implements BookListFragmentPresenterListener {
 
-
+    private static final String fields = "id,title,subtitle,origin_title,rating,author,translator,publisher,pubdate,summary,images,pages,price,binding,isbn13,series";
     public static BookListFragment getInstance(String tag){
         BookListFragment fragment=new BookListFragment();
         Bundle bundle=new Bundle();
@@ -38,27 +38,34 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
     public void initDatas() {
         Bundle bundle=getArguments();
         String tag=bundle.getString("tag");
-        Toast.makeText(getActivity(),"缓加载第一个页面",Toast.LENGTH_SHORT).show();
 
+
+        //调用请求网络接口
+        presenter.getBookList(null,tag,0,10,fields);
 
     }
     @Override
     public void initEvent() {
 
-        //调用请求网络接口
-        presenter.getBookList("1","最新",1,10,"书本简介");
-
-
+    }
+    @Override
+    public void onReresh(String str) {
+        Toast.makeText(getActivity(),str,Toast.LENGTH_SHORT).show();
+        System.out.println(str);
     }
 
     @Override
-    public void getData(String str) {
+    public void onLoad(String str) {
         Toast.makeText(getActivity(),str,Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onError(String str) {
+    public void showProgress() {
+        Toast.makeText(getActivity(),"开始加载数据",Toast.LENGTH_SHORT).show();
+    }
 
-        Toast.makeText(getActivity(),str,Toast.LENGTH_SHORT).show();
+    @Override
+    public void hideProgress() {
+        Toast.makeText(getActivity(),"数据加载完毕",Toast.LENGTH_SHORT).show();
     }
 }

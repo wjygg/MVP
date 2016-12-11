@@ -43,6 +43,8 @@ public abstract class BaseFragment<T,V extends BasePresenter<T>> extends Fragmen
         isPrepared=true;
         //初始化数据(一般指调用网络请求方法)
         lazyLoad();
+        //初始化事件
+        initEvent();
     }
 
     //这个方法用来缓加载首页的fragment http://www.cnblogs.com/xjx22/p/5424630.html
@@ -66,8 +68,6 @@ public abstract class BaseFragment<T,V extends BasePresenter<T>> extends Fragmen
             return;
         }
         initDatas();
-        //初始化事件
-        initEvent();
         isFirst=false;
     }
 

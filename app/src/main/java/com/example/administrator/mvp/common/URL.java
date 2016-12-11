@@ -6,5 +6,6 @@ package com.example.administrator.mvp.common;
 
 public class URL {
 
-    public static final String URL="https://api.douban.com/v2/";
+    public static final String BOOKURL="https://api.douban.com/v2/";
+
 }

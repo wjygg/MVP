@@ -1,0 +1,53 @@
+package com.example.administrator.mvp.entity;
+
+import java.io.Serializable;
+
+
+public class BookRatingEntity implements Serializable {
+    private int max;
+    private int numRaters;
+    private String average;
+    private int min;
+
+    public int getMax() {
+        return max;
+    }
+
+    public void setMax(int max) {
+        this.max = max;
+    }
+
+    public int getNumRaters() {
+        return numRaters;
+    }
+
+    public void setNumRaters(int numRaters) {
+        this.numRaters = numRaters;
+    }
+
+    public String getAverage() {
+        return average;
+    }
+
+    public void setAverage(String average) {
+        this.average = average;
+    }
+
+    public int getMin() {
+        return min;
+    }
+
+    public void setMin(int min) {
+        this.min = min;
+    }
+
+    @Override
+    public String toString() {
+        return "BookRatingEntity{" +
+                "max=" + max +
+                ", numRaters=" + numRaters +
+                ", average='" + average + '\'' +
+                ", min=" + min +
+                '}';
+    }
+}

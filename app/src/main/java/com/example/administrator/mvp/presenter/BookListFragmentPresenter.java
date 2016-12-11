@@ -24,6 +24,8 @@ private BookListModelListener bookListModelListener;
     }
 
     public void getBookList(String q,String tag,int start,int count, String fields){
+
+        view.showProgress();
         //model层网络请求
         bookListModelListener.getBookList(q,tag,start,count,fields,this);
 
@@ -33,7 +35,9 @@ private BookListModelListener bookListModelListener;
     @Override
     public void onSuccess(String objects) {
         //回调通知activity 请求的结果
-        view.getData(objects);
+        view.onReresh(objects);
+
+        view.hideProgress();
 
     }
 
@@ -41,6 +45,7 @@ private BookListModelListener bookListModelListener;
     @Override
     public void onFaild(String str) {
       //回调通知activity 请求的结果
-        view.onError(str);
+        view.onLoad(str);
+        view.hideProgress();
     }
 }

@@ -2,7 +2,6 @@ package com.example.administrator.mvp;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -29,16 +28,17 @@ public class MvpApplication extends Application {
 
         activitys=new LinkedList<Activity>();
 
-        application=this;
         //主线程id
         mainTd=android.os.Process.myTid();
 
     }
 
-    //返回application
-    public static Context getApplication(){
+    public static synchronized Application getApplication(){
 
-        return application;
+        if(application==null){
+            application=new MvpApplication();
+        }
+        return  application;
     }
 
     //添加activity
