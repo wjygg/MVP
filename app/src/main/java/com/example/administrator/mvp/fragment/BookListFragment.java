@@ -1,12 +1,20 @@
 package com.example.administrator.mvp.fragment;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.example.administrator.mvp.R;
+import com.example.administrator.mvp.adapter.RecyclerViewAdapter;
 import com.example.administrator.mvp.base.BaseFragment;
 import com.example.administrator.mvp.presenter.BookListFragmentPresenter;
 import com.example.administrator.mvp.presenter.listener.BookListFragmentPresenterListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.InjectView;
 
 /**
  * Created by wangjingyun on 2016/11/23.
@@ -15,6 +23,11 @@ import com.example.administrator.mvp.presenter.listener.BookListFragmentPresente
 
 public class BookListFragment extends BaseFragment<BookListFragmentPresenterListener,BookListFragmentPresenter> implements BookListFragmentPresenterListener {
 
+    @InjectView(R.id.recycleview)
+    RecyclerView recycleview;
+
+    private List<String> datas=new ArrayList<String>();
+    private RecyclerViewAdapter adapter;
     private static final String fields = "id,title,subtitle,origin_title,rating,author,translator,publisher,pubdate,summary,images,pages,price,binding,isbn13,series";
     public static BookListFragment getInstance(String tag){
         BookListFragment fragment=new BookListFragment();
@@ -39,7 +52,6 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
         Bundle bundle=getArguments();
         String tag=bundle.getString("tag");
 
-
         //调用请求网络接口
         presenter.getBookList(null,tag,0,10,fields);
 
@@ -51,7 +63,16 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
     @Override
     public void onReresh(String str) {
         Toast.makeText(getActivity(),str,Toast.LENGTH_SHORT).show();
-        System.out.println(str);
+
+        for(int i=1;i<=20;i++){
+
+            datas.add(i+"");
+        }
+        adapter=new RecyclerViewAdapter(getActivity(),datas);
+        recycleview.setAdapter(adapter);
+
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+        recycleview.setLayoutManager(linearLayoutManager);
     }
 
     @Override
