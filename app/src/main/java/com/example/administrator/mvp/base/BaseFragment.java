@@ -27,15 +27,12 @@ public abstract class BaseFragment<T,V extends BasePresenter<T>> extends Fragmen
 
         View view=inflater.inflate(getContentViewId(),null);
 
-
-
         //初始化presenter
         presenter=initPresenter();
         //view与presenter绑定
         presenter.attach((T)this);
 
-         ButterKnife.inject(view);
-
+        ButterKnife.inject(this,view);
 
         return view;
     }

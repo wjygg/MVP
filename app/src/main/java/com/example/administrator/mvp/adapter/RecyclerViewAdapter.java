@@ -53,7 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.inject(itemView);
+            ButterKnife.inject(this,itemView);
         }
     }
 }

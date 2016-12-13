@@ -56,6 +56,8 @@ public class MainActivity extends BaseActivity<MainActivityPresenterListener, Ma
         fragmentList.add(BookSearchFragment.getInstance());
         pageAdapter = new MainFragmentPageAdapter(fragmentList, getSupportFragmentManager());
         viewpager.setAdapter(pageAdapter);
+        //多缓存一个页面防止fragment 销毁
+        viewpager.setOffscreenPageLimit(2);
         //tablayout 和viewpager关联
         tablayout.setupWithViewPager(viewpager);
         tablayout.getTabAt(0).setText("新书");

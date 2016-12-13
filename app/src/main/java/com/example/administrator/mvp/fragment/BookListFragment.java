@@ -73,6 +73,8 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recycleview.setLayoutManager(linearLayoutManager);
+
+       // recycleview.addItemDecoration(new DividerI);
     }
 
     @Override
