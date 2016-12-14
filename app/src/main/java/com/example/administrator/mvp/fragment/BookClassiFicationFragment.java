@@ -1,5 +1,8 @@
 package com.example.administrator.mvp.fragment;
 
+import android.content.Intent;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.mvp.R;
@@ -7,12 +10,17 @@ import com.example.administrator.mvp.base.BaseFragment;
 import com.example.administrator.mvp.presenter.BookClassiFicationFragmentPresenter;
 import com.example.administrator.mvp.presenter.listener.BookClassiFicationFragmentPresenterListener;
 
+import butterknife.InjectView;
+
 /**
  * Created by Administrator on 2016/11/27.
  * 书本分类fragment
  */
 
 public class BookClassiFicationFragment extends BaseFragment<BookClassiFicationFragmentPresenterListener,BookClassiFicationFragmentPresenter> implements BookClassiFicationFragmentPresenterListener {
+
+    @InjectView(R.id.text)
+    TextView text;
 
     public static BookClassiFicationFragment getInstance(){
 
@@ -39,5 +47,12 @@ public class BookClassiFicationFragment extends BaseFragment<BookClassiFicationF
     @Override
     public void initEvent() {
 
+        text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), BActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

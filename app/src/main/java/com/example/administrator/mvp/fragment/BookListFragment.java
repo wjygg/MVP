@@ -1,6 +1,7 @@
 package com.example.administrator.mvp.fragment;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
@@ -21,10 +22,13 @@ import butterknife.InjectView;
  * 书本列表fragment
  */
 
-public class BookListFragment extends BaseFragment<BookListFragmentPresenterListener,BookListFragmentPresenter> implements BookListFragmentPresenterListener {
+public class BookListFragment extends BaseFragment<BookListFragmentPresenterListener,BookListFragmentPresenter> implements BookListFragmentPresenterListener,SwipeRefreshLayout.OnRefreshListener {
 
     @InjectView(R.id.recycleview)
     RecyclerView recycleview;
+
+    @InjectView(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
 
     private List<String> datas=new ArrayList<String>();
     private RecyclerViewAdapter adapter;
@@ -52,6 +56,8 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
         Bundle bundle=getArguments();
         String tag=bundle.getString("tag");
 
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.orange));
+        swipeRefreshLayout.setRefreshing(true);
         //调用请求网络接口
         presenter.getBookList(null,tag,0,10,fields);
 
@@ -74,6 +80,7 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recycleview.setLayoutManager(linearLayoutManager);
 
+        swipeRefreshLayout.setRefreshing(false);
        // recycleview.addItemDecoration(new DividerI);
     }
 
@@ -90,5 +97,10 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
     @Override
     public void hideProgress() {
         Toast.makeText(getActivity(),"数据加载完毕",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(true);
     }
 }
