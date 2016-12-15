@@ -1,7 +1,6 @@
 package com.example.administrator.mvp.common.service;
 
-import com.example.administrator.mvp.entity.BookListEntity;
-
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -14,6 +13,6 @@ import retrofit2.http.Query;
 
 public interface BookService {
     @GET("book/search")
-    Call<BookListEntity> getBookList(@Query("q") String q, @Query("tag") String tag, @Query("start") int start, @Query("count") int count, @Query("fields") String fields);
+    Call<ResponseBody> getBookList(@Query("q") String q, @Query("tag") String tag, @Query("start") int start, @Query("count") int count, @Query("fields") String fields);
 
 }
