@@ -37,6 +37,7 @@ public abstract  class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycl
         View view=LayoutInflater.from(context).inflate(layoutId,null);
 
         RecycleViewViewHolder holder=new RecycleViewViewHolder(view);
+
         return holder;
     }
 
