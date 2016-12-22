@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.mvp.R;
-import com.example.administrator.mvp.adapter.RecyclerViewAdapter;
+import com.example.administrator.mvp.adapter.recycleviewadapter.RecycleViewAdapter;
+import com.example.administrator.mvp.adapter.recycleviewadapter.RecycleViewViewHolder;
 import com.example.administrator.mvp.base.BaseFragment;
 import com.example.administrator.mvp.presenter.BookListFragmentPresenter;
 import com.example.administrator.mvp.presenter.listener.BookListFragmentPresenterListener;
@@ -31,7 +33,7 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
     SwipeRefreshLayout swipeRefreshLayout;
 
     private List<String> datas=new ArrayList<String>();
-    private RecyclerViewAdapter adapter;
+    private RecycleViewAdapter<String> adapter;
     private static final String fields = "id,title,subtitle,origin_title,rating,author,translator,publisher,pubdate,summary,images,pages,price,binding,isbn13,series";
     public static BookListFragment getInstance(String tag){
         BookListFragment fragment=new BookListFragment();
@@ -74,9 +76,14 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
 
             datas.add(i+"");
         }
-        adapter=new RecyclerViewAdapter(getActivity(),datas);
+        adapter=new RecycleViewAdapter<String>(getActivity(),R.layout.item_fragmentlist,datas) {
+            @Override
+            public void convert(RecycleViewViewHolder holder, int position) {
+                TextView text=holder.getView(R.id.tv_num);
+                text.setText(datas.get(position));
+            }
+        };
         recycleview.setAdapter(adapter);
-
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recycleview.setLayoutManager(linearLayoutManager);
 
