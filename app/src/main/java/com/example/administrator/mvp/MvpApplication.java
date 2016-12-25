@@ -33,10 +33,15 @@ public class MvpApplication extends Application {
 
     }
 
-    public static synchronized Application getApplication(){
+    public static  Application getApplication(){
 
         if(application==null){
-            application=new MvpApplication();
+
+            synchronized (MvpApplication.class) {
+                if (application == null) {
+                    application = new MvpApplication();
+                }
+            }
         }
         return  application;
     }
