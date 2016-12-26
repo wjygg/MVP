@@ -1,8 +1,12 @@
 package com.example.administrator.mvp.common;
 
+import android.os.Environment;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -28,13 +32,13 @@ public class ServcieFactory {
 
                 if(okHttpClient==null){
                     //缓存文件报错 空指针没修改 暂时隐藏
-                    //  http://mushuichuan.com/2016/03/01/okhttpcache/   okhttp设置缓存
-                 //    File cacheFile=new File(MvpApplication.getApplication().getCacheDir(),"carch");
-              //      Cache cache=new Cache(cacheFile,1024*1024*20);
+                   //   http://mushuichuan.com/2016/03/01/okhttpcache/   okhttp设置缓存
+                   File cacheFile=new File(Environment.getExternalStorageDirectory(),"carch");
+                   Cache cache=new Cache(cacheFile,1024*1024*20);
                     okHttpClient=new OkHttpClient.Builder()
                             //这里添加 拦截器
                             .addNetworkInterceptor(new CacheInterceptor())
-                        //    .cache(cache)
+                            .cache(cache)
                             .connectTimeout(20, TimeUnit.SECONDS)
                             .readTimeout(20, TimeUnit.SECONDS)
                             .build();

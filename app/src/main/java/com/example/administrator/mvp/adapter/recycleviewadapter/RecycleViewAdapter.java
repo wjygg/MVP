@@ -2,8 +2,6 @@ package com.example.administrator.mvp.adapter.recycleviewadapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
@@ -34,17 +32,15 @@ public abstract  class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycl
     @Override
     public RecycleViewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view=LayoutInflater.from(context).inflate(layoutId,null);
+        RecycleViewViewHolder viewholder=RecycleViewViewHolder.getViewHolder(layoutId,parent,context);
 
-        RecycleViewViewHolder holder=new RecycleViewViewHolder(view);
-
-        return holder;
+        return viewholder;
     }
 
     @Override
     public void onBindViewHolder(RecycleViewViewHolder holder, int position) {
 
-        convert(holder,position);
+        convert(holder,datas.get(position));
     }
 
     @Override
@@ -53,7 +49,7 @@ public abstract  class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycl
         return datas.size();
     }
 
-    public abstract  void convert(RecycleViewViewHolder holder, int position);
+    public abstract  void convert(RecycleViewViewHolder holder, T datas);
 
 
 }

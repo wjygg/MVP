@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,6 +68,7 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
     @Override
     public void initEvent() {
 
+
     }
     @Override
     public void onReresh(String str) {
@@ -76,13 +78,13 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
 
             datas.add(i+"");
         }
-        adapter=new RecycleViewAdapter<String>(getActivity(),R.layout.item_fragmentlist,datas) {
-            @Override
-            public void convert(RecycleViewViewHolder holder, int position) {
-                TextView text=holder.getView(R.id.tv_num);
-                text.setText(datas.get(position));
-            }
-        };
+       adapter=new RecycleViewAdapter<String>(getActivity(),R.layout.item_fragmentlist,datas) {
+           @Override
+           public void convert(RecycleViewViewHolder holder, String datas) {
+               TextView text=holder.getView(R.id.tv_num);
+               text.setText(datas);
+           }
+       };
         recycleview.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recycleview.setLayoutManager(linearLayoutManager);

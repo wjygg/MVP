@@ -1,5 +1,6 @@
 package com.example.administrator.mvp.activity;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -29,6 +30,9 @@ public class MainActivity extends BaseActivity<MainActivityPresenterListener, Ma
 
     @InjectView(R.id.viewpager)
     ViewPager viewpager;
+
+    @InjectView(R.id.floatactionbutton)
+    FloatingActionButton floatactionbutton;
 
     private List<Fragment> fragmentList = new ArrayList<Fragment>();
     private MainFragmentPageAdapter pageAdapter;

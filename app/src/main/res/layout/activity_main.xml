@@ -40,4 +40,19 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+  <!--  http://blog.csdn.net/mr_dsw/article/details/49531177  floatActionButton属性详解-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatactionbutton"
+        android:layout_width="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        app:elevation="6dp"
+        app:borderWidth ="0dp"
+        app:pressedTranslationZ="12dp"
+        android:src="@mipmap/ic_launcher"
+        android:backgroundTint="@color/orange"
+        app:rippleColor="@color/white"
+        android:layout_height="wrap_content" />
 </android.support.design.widget.CoordinatorLayout>

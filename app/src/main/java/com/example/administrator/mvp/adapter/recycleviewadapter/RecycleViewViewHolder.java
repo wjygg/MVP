@@ -1,8 +1,11 @@
 package com.example.administrator.mvp.adapter.recycleviewadapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
@@ -24,6 +27,12 @@ public class RecycleViewViewHolder extends RecyclerView.ViewHolder{
         this.convertView =itemView;
     }
 
+    public static RecycleViewViewHolder getViewHolder(int layoutId,ViewGroup parent,Context context){
+
+        View view= LayoutInflater.from(context).inflate(layoutId,null);
+
+        return new RecycleViewViewHolder(view);
+    }
 
     public <T extends View> T getView(int viewId){
 
