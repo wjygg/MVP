@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,11 +77,36 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
 
             datas.add(i+"");
         }
-       adapter=new RecycleViewAdapter<String>(getActivity(),R.layout.item_fragmentlist,datas) {
+       adapter=new RecycleViewAdapter<String>(getActivity(),datas) {
            @Override
-           public void convert(RecycleViewViewHolder holder, String datas) {
-               TextView text=holder.getView(R.id.tv_num);
-               text.setText(datas);
+           public void convert(RecycleViewViewHolder holder, int position) {
+
+               if(R.layout.item_fragmenthead==getItemViewType(position)){
+                   TextView head=holder.getView(R.id.tv_head);
+                   head.setText("我是头布局");
+               }else if(R.layout.item_fragmentlist==getItemViewType(position)){
+                   TextView text=holder.getView(R.id.tv_num);
+                   text.setText(datas.get(position));
+               }
+           }
+           @Override
+           public int convertItemViewType(int position) {
+               //position==0时返回头布局
+               if(position==0){
+
+                   return R.layout.item_fragmenthead;
+               }
+
+               return R.layout.item_fragmentlist;
+           }
+           @Override
+           public int getlayoutId(int viewType) {
+               //根据返回的viewtype返回布局id
+               if(viewType==R.layout.item_fragmenthead){
+
+                  return R.layout.item_fragmenthead;
+               }
+               return R.layout.item_fragmentlist;
            }
        };
         recycleview.setAdapter(adapter);

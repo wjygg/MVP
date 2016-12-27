@@ -18,21 +18,23 @@ public abstract  class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycl
 
     private Context context;
 
-    private int layoutId;
-    public RecycleViewAdapter(Context context,int layoutId,List<T> datas){
+    public RecycleViewAdapter(Context context,List<T> datas){
 
         this.context=context;
-
-        this.layoutId=layoutId;
 
         this.datas = datas;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+
+        return convertItemViewType(position);
+    }
 
     @Override
     public RecycleViewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        RecycleViewViewHolder viewholder=RecycleViewViewHolder.getViewHolder(layoutId,parent,context);
+        RecycleViewViewHolder viewholder=RecycleViewViewHolder.getViewHolder(getlayoutId(viewType),parent,context);
 
         return viewholder;
     }
@@ -40,7 +42,7 @@ public abstract  class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycl
     @Override
     public void onBindViewHolder(RecycleViewViewHolder holder, int position) {
 
-        convert(holder,datas.get(position));
+        convert(holder,position);
     }
 
     @Override
@@ -49,7 +51,11 @@ public abstract  class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycl
         return datas.size();
     }
 
-    public abstract  void convert(RecycleViewViewHolder holder, T datas);
+    public abstract  void convert(RecycleViewViewHolder holder, int position);
 
+    //抛出返回类型
+    public abstract int convertItemViewType(int position);
 
+    //抛出加载的布局
+    public abstract int getlayoutId(int viewType);
 }
