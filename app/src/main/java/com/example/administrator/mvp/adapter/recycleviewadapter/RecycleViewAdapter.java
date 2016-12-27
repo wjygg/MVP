@@ -18,11 +18,15 @@ public abstract  class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycl
 
     private Context context;
 
-    public RecycleViewAdapter(Context context,List<T> datas){
+    private int datasSize;
+
+    public RecycleViewAdapter(Context context,List<T> datas, int datasSize){
 
         this.context=context;
 
         this.datas = datas;
+
+        this.datasSize=datasSize;
     }
 
     @Override
@@ -48,7 +52,7 @@ public abstract  class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycl
     @Override
     public int getItemCount() {
 
-        return datas.size();
+        return datasSize;
     }
 
     public abstract  void convert(RecycleViewViewHolder holder, int position);

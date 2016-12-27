@@ -77,16 +77,19 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
 
             datas.add(i+"");
         }
-       adapter=new RecycleViewAdapter<String>(getActivity(),datas) {
+       adapter=new RecycleViewAdapter<String>(getActivity(),datas,datas.size()+2) {
            @Override
            public void convert(RecycleViewViewHolder holder, int position) {
 
                if(R.layout.item_fragmenthead==getItemViewType(position)){
                    TextView head=holder.getView(R.id.tv_head);
                    head.setText("我是头布局");
+               }else if(R.layout.item_fragmenttail==getItemViewType(position)){
+                   TextView head=holder.getView(R.id.tv_tail);
+                   head.setText("我是尾布局");
                }else if(R.layout.item_fragmentlist==getItemViewType(position)){
                    TextView text=holder.getView(R.id.tv_num);
-                   text.setText(datas.get(position));
+                   text.setText(datas.get(position-1));
                }
            }
            @Override
@@ -95,6 +98,10 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
                if(position==0){
 
                    return R.layout.item_fragmenthead;
+               }
+               if(position==datas.size()+1){
+
+                   return R.layout.item_fragmenttail;
                }
 
                return R.layout.item_fragmentlist;
@@ -105,6 +112,10 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
                if(viewType==R.layout.item_fragmenthead){
 
                   return R.layout.item_fragmenthead;
+
+               }else if(viewType==R.layout.item_fragmenttail){
+
+                   return R.layout.item_fragmenttail;
                }
                return R.layout.item_fragmentlist;
            }
