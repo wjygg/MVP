@@ -43,6 +43,8 @@ dependencies {
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     //添加recyclerview
     compile 'com.android.support:recyclerview-v7:24.0.0'
+    //添加cardview
+    compile 'com.android.support:cardview-v7:24.0.0'
 }
 dependencies {
     //鸿阳适配
