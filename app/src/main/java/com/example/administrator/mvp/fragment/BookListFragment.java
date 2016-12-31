@@ -1,9 +1,11 @@
 package com.example.administrator.mvp.fragment;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,6 +86,12 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
                if(R.layout.item_fragmenthead==getItemViewType(position)){
                    TextView head=holder.getView(R.id.tv_head);
                    head.setText("我是头布局");
+                   head.setOnClickListener(new View.OnClickListener() {
+                       @Override
+                       public void onClick(View v) {
+                           Snackbar.make(v,"我是头布局",Snackbar.LENGTH_SHORT).show();
+                       }
+                   });
                }else if(R.layout.item_fragmenttail==getItemViewType(position)){
                    TextView head=holder.getView(R.id.tv_tail);
                    head.setText("我是尾布局");
@@ -126,6 +134,8 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
 
         swipeRefreshLayout.setRefreshing(false);
        // recycleview.addItemDecoration(new DividerI);
+
+
     }
 
     @Override

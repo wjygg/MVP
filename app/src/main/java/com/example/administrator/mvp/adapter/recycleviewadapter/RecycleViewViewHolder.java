@@ -57,6 +57,4 @@ public class RecycleViewViewHolder extends RecyclerView.ViewHolder{
 
     }
 
-
-
 }
