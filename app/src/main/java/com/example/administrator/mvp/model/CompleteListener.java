@@ -5,8 +5,10 @@ package com.example.administrator.mvp.model;
  */
 
 public interface CompleteListener {
-    //请求成功
-    void onSuccess(String objects);
+    //刷新请求成功
+    void onRefreshSuccess(String objects);
+    //上拉请求成功
+    void onLoadSuccess(String objects);
     //请求失败
     void onFaild(String str);
 }

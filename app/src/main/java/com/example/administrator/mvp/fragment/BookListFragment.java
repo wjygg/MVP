@@ -13,8 +13,10 @@ import com.example.administrator.mvp.R;
 import com.example.administrator.mvp.adapter.recycleviewadapter.RecycleViewAdapter;
 import com.example.administrator.mvp.adapter.recycleviewadapter.RecycleViewViewHolder;
 import com.example.administrator.mvp.base.BaseFragment;
+import com.example.administrator.mvp.entity.BookInfoEntity;
 import com.example.administrator.mvp.presenter.BookListFragmentPresenter;
 import com.example.administrator.mvp.presenter.listener.BookListFragmentPresenterListener;
+import com.example.administrator.mvp.utils.RecycleViewUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,7 @@ import butterknife.InjectView;
  * 书本列表fragment
  */
 
-public class BookListFragment extends BaseFragment<BookListFragmentPresenterListener,BookListFragmentPresenter> implements BookListFragmentPresenterListener,SwipeRefreshLayout.OnRefreshListener {
+public class BookListFragment extends BaseFragment<BookListFragmentPresenterListener,BookListFragmentPresenter> implements BookListFragmentPresenterListener {
 
     @InjectView(R.id.recycleview)
     RecyclerView recycleview;
@@ -69,11 +71,30 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
     @Override
     public void initEvent() {
 
+        //recycleview 滚动监听
+        recycleview.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
 
+                //判断recycleview滚动到低端
+                if(RecycleViewUtil.isSlideToBottom(recycleview)){
+
+                 Toast.makeText(getActivity(),"滚动到低端了",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
     }
     @Override
-    public void onReresh(String str) {
-        Toast.makeText(getActivity(),str,Toast.LENGTH_SHORT).show();
+    public void onRefresh(List<BookInfoEntity> bookInfoEntity) {
+
+        Toast.makeText(getActivity(),bookInfoEntity.size()+"",Toast.LENGTH_SHORT).show();
 
         for(int i=1;i<=20;i++){
 
@@ -81,7 +102,7 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
         }
        adapter=new RecycleViewAdapter<String>(getActivity(),datas,datas.size()+2) {
            @Override
-           public void convert(RecycleViewViewHolder holder, int position) {
+           public void convert(RecycleViewViewHolder holder,final  int position) {
 
                if(R.layout.item_fragmenthead==getItemViewType(position)){
                    TextView head=holder.getView(R.id.tv_head);
@@ -98,6 +119,13 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
                }else if(R.layout.item_fragmentlist==getItemViewType(position)){
                    TextView text=holder.getView(R.id.tv_num);
                    text.setText(datas.get(position-1));
+
+                   text.setOnClickListener(new View.OnClickListener() {
+                       @Override
+                       public void onClick(View v) {
+                           Snackbar.make(v,datas.get(position-1)+"",Snackbar.LENGTH_SHORT).show();
+                       }
+                   });
                }
            }
            @Override
@@ -135,12 +163,17 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
         swipeRefreshLayout.setRefreshing(false);
        // recycleview.addItemDecoration(new DividerI);
 
-
     }
 
     @Override
-    public void onLoad(String str) {
-        Toast.makeText(getActivity(),str,Toast.LENGTH_SHORT).show();
+    public void onLoad(List<BookInfoEntity> bookInfoEntity) {
+        Toast.makeText(getActivity(),bookInfoEntity.size()+"",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onFild(String fild) {
+
+        Toast.makeText(getActivity(),fild,Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -153,8 +186,5 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
         Toast.makeText(getActivity(),"数据加载完毕",Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onRefresh() {
-        swipeRefreshLayout.setRefreshing(true);
-    }
+
 }

@@ -1,11 +1,16 @@
 package com.example.administrator.mvp.presenter;
 
 
+import com.alibaba.fastjson.JSON;
 import com.example.administrator.mvp.base.BasePresenter;
+import com.example.administrator.mvp.entity.BookInfoEntity;
+import com.example.administrator.mvp.entity.BookListEntity;
 import com.example.administrator.mvp.model.BookListModelListener;
 import com.example.administrator.mvp.model.CompleteListener;
 import com.example.administrator.mvp.model.impl.BookListModelImpl;
 import com.example.administrator.mvp.presenter.listener.BookListFragmentPresenterListener;
+
+import java.util.List;
 
 /**
  * Created by wangjingyun on 2016/11/23.
@@ -27,25 +32,49 @@ private BookListModelListener bookListModelListener;
 
         view.showProgress();
         //model层网络请求
-        bookListModelListener.getBookList(q,tag,start,count,fields,this);
+        bookListModelListener.getRefreshBookList(q,tag,start,count,fields,this);
 
     }
 
-    //请求成功
+    public void getLoadBookList(String q,String tag,int start,int count, String fields){
+
+        view.showProgress();
+
+        bookListModelListener.getLoadBookList(q,tag,start,count,fields,this);
+
+    }
+
+
     @Override
-    public void onSuccess(String objects) {
+    public void onRefreshSuccess(String objects) {
+
+        BookListEntity bookListEntity=JSON.parseObject(objects, BookListEntity.class);
+
+        List<BookInfoEntity> bookInfoEntity= bookListEntity.getBooks();
         //回调通知activity 请求的结果
-        view.onReresh(objects);
+
+        view.onRefresh(bookInfoEntity);
 
         view.hideProgress();
+    }
 
+    @Override
+    public void onLoadSuccess(String objects) {
+
+        BookListEntity bookListEntity=JSON.parseObject(objects, BookListEntity.class);
+
+        List<BookInfoEntity> bookInfoEntity= bookListEntity.getBooks();
+
+        //回调通知activity 请求的结果
+        view.onLoad(bookInfoEntity);
+
+        view.hideProgress();
     }
 
     //请求失败
     @Override
-    public void onFaild(String str) {
-      //回调通知activity 请求的结果
-        view.onLoad(str);
-        view.hideProgress();
+    public void onFaild(String objects) {
+
+        view.onFild(objects);
     }
 }

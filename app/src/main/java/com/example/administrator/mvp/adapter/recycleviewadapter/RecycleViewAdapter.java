@@ -55,6 +55,26 @@ public abstract  class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycl
         return datasSize;
     }
 
+    public void addDatas(List<T> datas){
+
+        this.datas=datas;
+
+        this.notifyDataSetChanged();
+
+    }
+
+    public void removeDatas(int position){
+
+        this.datas.remove(position);
+        this.notifyDataSetChanged();
+    }
+
+    public void loadDatas(List<T> datas){
+
+        this.datas.addAll(datas);
+        this.notifyDataSetChanged();
+    }
+
     public abstract  void convert(RecycleViewViewHolder holder, int position);
 
     //抛出返回类型
