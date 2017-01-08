@@ -203,6 +203,12 @@ public class BookInfoEntity implements Serializable{
         this.series = series;
     }
 
+    public String getInfoString() {
+        if (this.author.length > 0) {
+            return this.author[0].split("、")[0] + "/" + this.publisher + "/" + this.pubdate;
+        }
+        return "-";
+    }
     @Override
     public String toString() {
         return "BookInfoEntity{" +

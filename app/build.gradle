@@ -46,8 +46,10 @@ dependencies {
     //添加cardview
     compile 'com.android.support:cardview-v7:24.0.0'
     compile 'com.google.code.gson:gson:2.2.4'
-
+    //fastjson
     compile 'com.alibaba:fastjson:1.1.54.android'
+    //Glide
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 }
 dependencies {
     //鸿阳适配

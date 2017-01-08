@@ -18,15 +18,12 @@ public abstract  class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycl
 
     private Context context;
 
-    private int datasSize;
 
-    public RecycleViewAdapter(Context context,List<T> datas, int datasSize){
+    public RecycleViewAdapter(Context context,List<T> datas){
 
         this.context=context;
 
         this.datas = datas;
-
-        this.datasSize=datasSize;
     }
 
     @Override
@@ -46,17 +43,16 @@ public abstract  class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycl
     @Override
     public void onBindViewHolder(RecycleViewViewHolder holder, int position) {
 
-        convert(holder,position);
+        convert(holder,datas.get(position));
     }
 
     @Override
     public int getItemCount() {
 
-        return datasSize;
+        return datas.size();
     }
 
-    public void addDatas(List<T> datas){
-
+    public void initDatas(List<T> datas){
         this.datas=datas;
 
         this.notifyDataSetChanged();
@@ -69,13 +65,13 @@ public abstract  class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycl
         this.notifyDataSetChanged();
     }
 
-    public void loadDatas(List<T> datas){
+    public void addDatas(List<T> datas){
 
         this.datas.addAll(datas);
         this.notifyDataSetChanged();
     }
 
-    public abstract  void convert(RecycleViewViewHolder holder, int position);
+    public abstract  void convert(RecycleViewViewHolder holder, T datas);
 
     //抛出返回类型
     public abstract int convertItemViewType(int position);
