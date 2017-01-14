@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar;
 import com.example.administrator.mvp.R;
 import com.example.administrator.mvp.adapter.MainFragmentPageAdapter;
 import com.example.administrator.mvp.base.BaseActivity;
-import com.example.administrator.mvp.fragment.BookClassiFicationFragment;
+import com.example.administrator.mvp.fragment.BeautyGirFragment;
 import com.example.administrator.mvp.fragment.BookListFragment;
 import com.example.administrator.mvp.fragment.BookSearchFragment;
 import com.example.administrator.mvp.presenter.MainActivityPresenter;
@@ -56,7 +56,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenterListener, Ma
 
         //添加fragment
         fragmentList.add(BookListFragment.getInstance("新书"));
-        fragmentList.add(BookClassiFicationFragment.getInstance());
+        fragmentList.add(BeautyGirFragment.getInstance());
         fragmentList.add(BookSearchFragment.getInstance());
         pageAdapter = new MainFragmentPageAdapter(fragmentList, getSupportFragmentManager());
         viewpager.setAdapter(pageAdapter);
@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenterListener, Ma
         //tablayout 和viewpager关联
         tablayout.setupWithViewPager(viewpager);
         tablayout.getTabAt(0).setText("新书");
-        tablayout.getTabAt(1).setText("分类");
+        tablayout.getTabAt(1).setText("美女");
         tablayout.getTabAt(2).setText("搜索");
     }
 

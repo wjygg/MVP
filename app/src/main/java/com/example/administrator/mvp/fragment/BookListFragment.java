@@ -64,33 +64,8 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
         Bundle bundle=getArguments();
         tag=bundle.getString("tag");
 
-        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.orange));
+
         swipeRefreshLayout.setRefreshing(true);
-
-        adapter=new RecycleViewAdapter<BookInfoEntity>(getActivity(),datas) {
-            @Override
-            public void convert(RecycleViewViewHolder holder, BookInfoEntity datas) {
-
-                holder.setImgView(R.id.iv_book_img,datas.getImages().getLarge());
-                holder.setText(R.id.tv_book_title,datas.getTitle());
-                holder.setText(R.id.tv_book_info,datas.getInfoString());
-                holder.setText(R.id.tv_book_description,datas.getSummary());
-            }
-            @Override
-            public int convertItemViewType(int position) {
-
-                return R.layout.item_fragmentlist;
-            }
-            @Override
-            public int getlayoutId(int viewType) {
-                //返回单个 布局
-                return R.layout.item_fragmentlist;
-            }
-        };
-
-        recycleview.setAdapter(adapter);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
-        recycleview.setLayoutManager(linearLayoutManager);
         //调用请求网络接口
         presenter.getBookList(null,tag,0,10,fields);
 
@@ -129,6 +104,32 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
                 super.onScrollStateChanged(recyclerView, newState);
             }
         });
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.orange));
+        adapter=new RecycleViewAdapter<BookInfoEntity>(getActivity(),datas) {
+            @Override
+            public void convert(RecycleViewViewHolder holder, BookInfoEntity datas) {
+
+                holder.setImgView(R.id.iv_book_img,datas.getImages().getLarge());
+                holder.setText(R.id.tv_book_title,datas.getTitle());
+                holder.setText(R.id.tv_book_info,datas.getInfoString());
+                holder.setText(R.id.tv_book_description,datas.getSummary());
+            }
+            @Override
+            public int convertItemViewType(int position) {
+
+                return R.layout.item_fragmentlist;
+            }
+            @Override
+            public int getlayoutId(int viewType) {
+                //返回单个 布局
+                return R.layout.item_fragmentlist;
+            }
+        };
+
+        recycleview.setAdapter(adapter);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+        recycleview.setLayoutManager(linearLayoutManager);
+
     }
     @Override
     public void onRefresh(List<BookInfoEntity> bookInfoEntity) {
