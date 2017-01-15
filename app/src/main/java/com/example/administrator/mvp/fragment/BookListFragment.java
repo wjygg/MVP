@@ -129,7 +129,7 @@ public class BookListFragment extends BaseFragment<BookListFragmentPresenterList
         recycleview.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recycleview.setLayoutManager(linearLayoutManager);
-
+     //   recycleview.addItemDecoration(new RecycyleViewDivider(getActivity(),10));
     }
     @Override
     public void onRefresh(List<BookInfoEntity> bookInfoEntity) {

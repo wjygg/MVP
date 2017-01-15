@@ -37,7 +37,7 @@ public class RecycleViewViewHolder extends RecyclerView.ViewHolder{
 
     public static RecycleViewViewHolder getViewHolder(int layoutId,ViewGroup parent,Context context){
 
-        View view= LayoutInflater.from(context).inflate(layoutId,null);
+        View view= LayoutInflater.from(context).inflate(layoutId,parent,false);
 
         return new RecycleViewViewHolder(view,context);
     }

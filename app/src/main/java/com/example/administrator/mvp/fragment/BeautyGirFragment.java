@@ -1,6 +1,7 @@
 package com.example.administrator.mvp.fragment;
 
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.Toast;
@@ -101,9 +102,9 @@ public class BeautyGirFragment extends BaseFragment<BeautyGirFragmentPresenterLi
             public void convert(RecycleViewViewHolder holder, BeautyGirDetail datas) {
 
 
-               ScaleImageView scaleImageView= holder.getView(R.id.iv_image);
-               scaleImageView.setOriginalSize(datas.getWidth(),datas.getHeight());
-               Glide.with(getActivity()).load(datas.getUrl()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.empty_book_img).error(R.drawable.empty_book_img).into(scaleImageView);
+              final  ScaleImageView scaleImageView= holder.getView(R.id.iv_image);
+
+               Glide.with(getActivity()).load(datas.getUrl()).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.empty_book_img).error(R.drawable.empty_book_img).into(scaleImageView);
             }
 
             @Override
@@ -119,9 +120,8 @@ public class BeautyGirFragment extends BaseFragment<BeautyGirFragmentPresenterLi
         };
 
         recycleview.setAdapter(adapter);
-        recycleview.setLayoutManager(staggeredGridLayoutManager);
-        recycleview.addItemDecoration(new RecyclerView.ItemDecoration() {
-        });
+        recycleview.setLayoutManager(new GridLayoutManager(getActivity(),2));
+
     }
 
     @Override
