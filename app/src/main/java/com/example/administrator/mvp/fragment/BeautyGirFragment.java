@@ -35,6 +35,7 @@ public class BeautyGirFragment extends BaseFragment<BeautyGirFragmentPresenterLi
 
     @InjectView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
+
     private List<BeautyGirDetail> datas=new ArrayList<BeautyGirDetail>();
     private RecycleViewAdapter<BeautyGirDetail> adapter;
     private int count=10;

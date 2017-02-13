@@ -11,7 +11,8 @@ import com.example.administrator.mvp.adapter.MainFragmentPageAdapter;
 import com.example.administrator.mvp.base.BaseActivity;
 import com.example.administrator.mvp.fragment.BeautyGirFragment;
 import com.example.administrator.mvp.fragment.BookListFragment;
-import com.example.administrator.mvp.fragment.BookSearchFragment;
+import com.example.administrator.mvp.fragment.MultiLayoutFragment;
+import com.example.administrator.mvp.fragment.MyFragment;
 import com.example.administrator.mvp.presenter.MainActivityPresenter;
 import com.example.administrator.mvp.presenter.listener.MainActivityPresenterListener;
 
@@ -57,7 +58,9 @@ public class MainActivity extends BaseActivity<MainActivityPresenterListener, Ma
         //添加fragment
         fragmentList.add(BookListFragment.getInstance("新书"));
         fragmentList.add(BeautyGirFragment.getInstance());
-        fragmentList.add(BookSearchFragment.getInstance());
+        fragmentList.add(MultiLayoutFragment.getInstance());
+       fragmentList.add(MyFragment.getInstance());
+
         pageAdapter = new MainFragmentPageAdapter(fragmentList, getSupportFragmentManager());
         viewpager.setAdapter(pageAdapter);
         //多缓存一个页面防止fragment 销毁
@@ -66,7 +69,8 @@ public class MainActivity extends BaseActivity<MainActivityPresenterListener, Ma
         tablayout.setupWithViewPager(viewpager);
         tablayout.getTabAt(0).setText("新书");
         tablayout.getTabAt(1).setText("美女");
-        tablayout.getTabAt(2).setText("搜索");
+        tablayout.getTabAt(2).setText("多布局");
+        tablayout.getTabAt(3).setText("我的");
     }
 
     @Override

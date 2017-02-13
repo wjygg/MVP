@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/item_live_partition_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
+
+        <TextView
+            android:id="@+id/item_live_partition_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@+id/item_live_partition_icon"
+            android:gravity="center"
+            android:textColor="@color/font_normal"
+            android:textSize="14sp"
+            tools:text="直播分类名称" />
+
+        <TextView
+            android:id="@+id/item_live_partition_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:textColor="@color/font_normal"
+            android:textSize="14sp"
+            tools:text="当前直播人数"
+            android:drawablePadding="3dp" />
+
+    </RelativeLayout>
+</LinearLayout>

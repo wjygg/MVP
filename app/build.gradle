@@ -5,7 +5,7 @@ android {
     buildToolsVersion "24.0.0"
     defaultConfig {
         applicationId "com.example.administrator.mvp"
-        minSdkVersion 9
+        minSdkVersion 11
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -50,6 +50,8 @@ dependencies {
     compile 'com.alibaba:fastjson:1.1.54.android'
     //Glide
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    //首页 banner
+    compile 'com.youth.banner:banner:1.4.8'
 }
 dependencies {
     //鸿阳适配
