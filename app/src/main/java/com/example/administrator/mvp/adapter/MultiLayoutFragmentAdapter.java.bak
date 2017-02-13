@@ -1,4 +1,4 @@
-package com.example.administrator.mvp.adapter;
+﻿package com.example.administrator.mvp.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +16,8 @@ import com.example.administrator.mvp.adapter.recycleviewadapter.RecycleViewViewH
 import com.example.administrator.mvp.entity.MultiLayoutEntitiy;
 import com.example.administrator.mvp.widget.CircleImageView;
 import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
 import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
@@ -71,8 +73,25 @@ public class MultiLayoutFragmentAdapter extends RecyclerView.Adapter<RecycleView
        if(getItemViewType(position)==R.layout.item_multilayout_banner){
 
           Banner banner= holder.getView(R.id.banner);
-          banner.setImages(getBanner()).setImageLoader(new GlideImageLoader()).start();
 
+          //设置banner样式（显示圆形指示器和标题）
+           banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE);
+           //设置图片加载器
+           banner.setImageLoader(new GlideImageLoader());
+           //设置图片集合
+           banner.setImages(getBanner());
+           //设置banner动画效果（正方体旋转式）
+           banner.setBannerAnimation(Transformer.CubeOut);
+           //设置标题集合（当banner样式有显示title时）
+         //  banner.setBannerTitles(Arrays.asList(titles));
+           //设置自动轮播，默认为true
+           banner.isAutoPlay(true);
+           //设置轮播时间
+           banner.setDelayTime(2000);
+           //设置指示器位置：左侧显示（当banner模式中有指示器时）
+           banner.setIndicatorGravity(BannerConfig.LEFT);
+           //banner设置方法全部调用完毕时最后调用
+           banner.start();
 
            //本地分类
        }else if(getItemViewType(position)==R.layout.item_multilayout_locallayout){
@@ -174,6 +193,7 @@ public class MultiLayoutFragmentAdapter extends RecyclerView.Adapter<RecycleView
 
 
     public int getItemTitle(int position){
+
         return (position+3)/5-1;
 
     }
