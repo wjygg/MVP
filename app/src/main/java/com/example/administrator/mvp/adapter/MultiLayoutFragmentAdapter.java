@@ -1,4 +1,4 @@
-package com.example.administrator.mvp.adapter;
+﻿package com.example.administrator.mvp.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -194,7 +194,7 @@ public class MultiLayoutFragmentAdapter extends RecyclerView.Adapter<RecycleView
 
     public int getItemTitle(int position){
 
-        return (position+3)/5;
+        return (position+3)/5-1;
 
     }
 
