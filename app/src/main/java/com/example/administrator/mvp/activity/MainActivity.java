@@ -12,7 +12,7 @@ import com.example.administrator.mvp.base.BaseActivity;
 import com.example.administrator.mvp.fragment.BeautyGirFragment;
 import com.example.administrator.mvp.fragment.BookListFragment;
 import com.example.administrator.mvp.fragment.MultiLayoutFragment;
-import com.example.administrator.mvp.fragment.MyFragment;
+import com.example.administrator.mvp.fragment.ZoneFragment;
 import com.example.administrator.mvp.presenter.MainActivityPresenter;
 import com.example.administrator.mvp.presenter.listener.MainActivityPresenterListener;
 
@@ -59,7 +59,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenterListener, Ma
         fragmentList.add(BookListFragment.getInstance("新书"));
         fragmentList.add(BeautyGirFragment.getInstance());
         fragmentList.add(MultiLayoutFragment.getInstance());
-       fragmentList.add(MyFragment.getInstance());
+        fragmentList.add(ZoneFragment.getInstance());
 
         pageAdapter = new MainFragmentPageAdapter(fragmentList, getSupportFragmentManager());
         viewpager.setAdapter(pageAdapter);
@@ -69,8 +69,8 @@ public class MainActivity extends BaseActivity<MainActivityPresenterListener, Ma
         tablayout.setupWithViewPager(viewpager);
         tablayout.getTabAt(0).setText("新书");
         tablayout.getTabAt(1).setText("美女");
-        tablayout.getTabAt(2).setText("多布局");
-        tablayout.getTabAt(3).setText("我的");
+        tablayout.getTabAt(2).setText("直播");
+        tablayout.getTabAt(3).setText("分区");
     }
 
     @Override
