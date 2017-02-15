@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenterListener, Ma
         tablayout.getTabAt(0).setText("新书");
         tablayout.getTabAt(1).setText("美女");
         tablayout.getTabAt(2).setText("直播");
-        tablayout.getTabAt(3).setText("分区");
+        tablayout.getTabAt(3).setText("我的");
     }
 
     @Override

@@ -11,4 +11,6 @@
     <color name="card_view_background">@color/white</color>
     <color name="black_alpha_45">#71000000</color>
     <color name="pink_text_color">#fb7299</color>
+    <color name="window_background">#eaeaea</color>
+    <color name="main_background">#EAEAEA</color>
 </resources>

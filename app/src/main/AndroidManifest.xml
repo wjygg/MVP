@@ -27,6 +27,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".base.BaseActivity"></activity>
+
+        <activity android:name=".activity.SomeDramaActivity"></activity>
     </application>
 
 </manifest>
