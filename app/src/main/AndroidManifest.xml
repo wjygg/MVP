@@ -29,6 +29,8 @@
         <activity android:name=".base.BaseActivity"></activity>
 
         <activity android:name=".activity.SomeDramaActivity"></activity>
+        <activity android:name=".activity.PieChartActvitiy"></activity>
+
     </application>
 
 </manifest>
