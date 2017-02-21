@@ -29,7 +29,9 @@
         <activity android:name=".base.BaseActivity"></activity>
 
         <activity android:name=".activity.SomeDramaActivity"></activity>
-        <activity android:name=".activity.PieChartActvitiy"></activity>
+        <activity android:name=".activity.CustomActvitiy"></activity>
+        <activity android:name=".activity.PieChartActivity"></activity>
+        <activity android:name=".activity.SpiderPictureActivity"></activity>
 
     </application>
 

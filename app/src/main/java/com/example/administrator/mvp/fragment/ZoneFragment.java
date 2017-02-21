@@ -3,7 +3,7 @@ package com.example.administrator.mvp.fragment;
 import android.content.Intent;
 
 import com.example.administrator.mvp.R;
-import com.example.administrator.mvp.activity.PieChartActvitiy;
+import com.example.administrator.mvp.activity.CustomActvitiy;
 import com.example.administrator.mvp.activity.SomeDramaActivity;
 import com.example.administrator.mvp.base.BaseFragment;
 import com.example.administrator.mvp.presenter.ZoneFragmentPresenter;
@@ -59,7 +59,7 @@ public class ZoneFragment extends BaseFragment<ZoneFragmentPresenterListener,Zon
     @OnClick(R.id.rl_game)
     void startPieChartActivity(){
 
-        startActivity(new Intent(getActivity(),PieChartActvitiy.class));
+        startActivity(new Intent(getActivity(), CustomActvitiy.class));
     }
 
 }
