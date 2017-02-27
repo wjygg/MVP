@@ -1,13 +1,20 @@
 package com.example.administrator.mvp.activity;
 
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.administrator.mvp.R;
+import com.example.administrator.mvp.adapter.SomeDramaBanner;
+import com.example.administrator.mvp.adapter.section.SectionedRecyclerViewAdapter;
 import com.example.administrator.mvp.base.BaseActivity;
+import com.example.administrator.mvp.entity.SomeDramaEntity;
 import com.example.administrator.mvp.presenter.SomeDramaActivityPresenter;
 import com.example.administrator.mvp.presenter.listener.SomeDramaActivityPresenterListener;
+import com.example.administrator.mvp.utils.StringUtils;
 
 import butterknife.InjectView;
 
@@ -24,6 +31,10 @@ public class SomeDramaActivity extends BaseActivity<SomeDramaActivityPresenterLi
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
 
+    @InjectView(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
+    private SectionedRecyclerViewAdapter mSectionedRecyclerViewAdapter;
     @Override
     public int getActivityId() {
         return R.layout.activity_somedrama;
@@ -37,6 +48,8 @@ public class SomeDramaActivity extends BaseActivity<SomeDramaActivityPresenterLi
     @Override
     public void initDatas() {
        //网络请求
+
+        presenter.getSomeDramaDatas();
 
     }
 
@@ -56,5 +69,63 @@ public class SomeDramaActivity extends BaseActivity<SomeDramaActivityPresenterLi
                 finish();
             }
         });
+
+
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.orange));
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                presenter.getSomeDramaDatas();
+            }
+        });
+
+        mSectionedRecyclerViewAdapter = new SectionedRecyclerViewAdapter();
+        GridLayoutManager mGridLayoutManager = new GridLayoutManager(SomeDramaActivity.this, 3);
+        mGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+
+            @Override
+            public int getSpanSize(int position) {
+
+                switch (mSectionedRecyclerViewAdapter.getSectionItemViewType(position)) {
+                    case SectionedRecyclerViewAdapter.VIEW_TYPE_ITEM_LOADED:
+                        return 3;
+
+                    default:
+                        return 1;
+                }
+            }
+        });
+        recyclerView.setAdapter(mSectionedRecyclerViewAdapter);
     }
+
+    @Override
+    public void onRefresh( SomeDramaEntity someDramaEntity) {
+
+        mSectionedRecyclerViewAdapter.addSection(new SomeDramaBanner(someDramaEntity.getResult().getAd().getHead()));
+
+        mSectionedRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onFild(String fild) {
+
+        Toast.makeText(SomeDramaActivity.this,fild,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showProgress() {
+
+        Toast.makeText(SomeDramaActivity.this, StringUtils.getText(SomeDramaActivity.this,R.string.begin_datas),Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+        Toast.makeText(SomeDramaActivity.this, StringUtils.getText(SomeDramaActivity.this,R.string.end_datas),Toast.LENGTH_SHORT).show();
+    }
+
+
 }
