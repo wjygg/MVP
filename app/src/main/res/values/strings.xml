@@ -8,4 +8,11 @@
     <string name="begin_datas">开始请求数据</string>
 
     <string name="end_datas">请求数据完毕</string>
+
+    <string name="to_them">追番</string>
+
+    <string name="index">索引</string>
+
+    <string name="time_line">放送表</string>
+
 </resources>

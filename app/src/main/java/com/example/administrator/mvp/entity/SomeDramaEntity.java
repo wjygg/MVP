@@ -191,6 +191,13 @@ public class SomeDramaEntity {
                 this.head = head;
             }
 
+            @Override
+            public String toString() {
+                return "AdBean{" +
+                        "body=" + body +
+                        ", head=" + head +
+                        '}';
+            }
 
             public static class BodyBean {
 
@@ -698,4 +705,6 @@ public class SomeDramaEntity {
             }
         }
     }
+
+
 }

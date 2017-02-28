@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.administrator.mvp.R;
 import com.example.administrator.mvp.adapter.SomeDramaBanner;
 import com.example.administrator.mvp.adapter.section.SectionedRecyclerViewAdapter;
+import com.example.administrator.mvp.adapter.section.SomeDrameLocalClass;
 import com.example.administrator.mvp.base.BaseActivity;
 import com.example.administrator.mvp.entity.SomeDramaEntity;
 import com.example.administrator.mvp.presenter.SomeDramaActivityPresenter;
@@ -81,7 +82,18 @@ public class SomeDramaActivity extends BaseActivity<SomeDramaActivityPresenterLi
             }
         });
 
+
+    }
+
+    @Override
+    public void onRefresh( SomeDramaEntity someDramaEntity) {
+
         mSectionedRecyclerViewAdapter = new SectionedRecyclerViewAdapter();
+
+        mSectionedRecyclerViewAdapter.addSection(new SomeDramaBanner(someDramaEntity.getResult().getAd().getHead()));
+
+        mSectionedRecyclerViewAdapter.addSection(new SomeDrameLocalClass(SomeDramaActivity.this));
+
         GridLayoutManager mGridLayoutManager = new GridLayoutManager(SomeDramaActivity.this, 3);
         mGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
 
@@ -89,7 +101,7 @@ public class SomeDramaActivity extends BaseActivity<SomeDramaActivityPresenterLi
             public int getSpanSize(int position) {
 
                 switch (mSectionedRecyclerViewAdapter.getSectionItemViewType(position)) {
-                    case SectionedRecyclerViewAdapter.VIEW_TYPE_ITEM_LOADED:
+                    case SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER:
                         return 3;
 
                     default:
@@ -97,15 +109,9 @@ public class SomeDramaActivity extends BaseActivity<SomeDramaActivityPresenterLi
                 }
             }
         });
+        recyclerView.setLayoutManager(mGridLayoutManager);
         recyclerView.setAdapter(mSectionedRecyclerViewAdapter);
-    }
 
-    @Override
-    public void onRefresh( SomeDramaEntity someDramaEntity) {
-
-        mSectionedRecyclerViewAdapter.addSection(new SomeDramaBanner(someDramaEntity.getResult().getAd().getHead()));
-
-        mSectionedRecyclerViewAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -116,7 +122,7 @@ public class SomeDramaActivity extends BaseActivity<SomeDramaActivityPresenterLi
 
     @Override
     public void showProgress() {
-
+        swipeRefreshLayout.setRefreshing(true);
         Toast.makeText(SomeDramaActivity.this, StringUtils.getText(SomeDramaActivity.this,R.string.begin_datas),Toast.LENGTH_SHORT).show();
 
     }
@@ -124,6 +130,7 @@ public class SomeDramaActivity extends BaseActivity<SomeDramaActivityPresenterLi
     @Override
     public void hideProgress() {
 
+        swipeRefreshLayout.setRefreshing(false);
         Toast.makeText(SomeDramaActivity.this, StringUtils.getText(SomeDramaActivity.this,R.string.end_datas),Toast.LENGTH_SHORT).show();
     }
 

@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *  banner section
+ *
  *
  * Created by wangjingyun on 2017/2/27.
  *
@@ -27,7 +29,8 @@ public class SomeDramaBanner extends StatelessSection {
     private List<SomeDramaEntity.ResultBean.AdBean.HeadBean> banners;
 
     public SomeDramaBanner(List<SomeDramaEntity.ResultBean.AdBean.HeadBean> banners) {
-        super(R.layout.item_somedramebanner);
+
+        super(R.layout.item_somedramebanner,R.layout.item_somedram_empty);
 
         this.banners=banners;
     }
@@ -40,16 +43,38 @@ public class SomeDramaBanner extends StatelessSection {
     @Override
     public RecyclerView.ViewHolder getItemViewHolder(View view) {
 
-        return new BannerViewHolder(view);
+        return new EmptyViewHolder(view);
     }
 
     @Override
     public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position) {
 
+    }
+
+
+    @Override
+    public RecyclerView.ViewHolder getHeaderViewHolder(View view) {
+
+        return new BannerViewHolder(view);
+    }
+
+    @Override
+    public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder) {
+
         BannerViewHolder bannerViewHolder=(BannerViewHolder)holder;
 
         bannerViewHolder.banner.setImages(getBanner()).setImageLoader(new GlideImageLoader()).start();
     }
+
+
+    static class EmptyViewHolder extends RecyclerView.ViewHolder{
+
+        public EmptyViewHolder(View itemView) {
+            super(itemView);
+        }
+
+    }
+
 
     static class BannerViewHolder extends RecyclerView.ViewHolder{
 
