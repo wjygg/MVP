@@ -51,7 +51,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenterListener, Ma
     @Override
     public void initDatas() {
         //设置toolbar
-        toolbar.setTitle("我的简易书城");
+        toolbar.setTitle("仿啊仿");
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         this.setSupportActionBar(toolbar);
 

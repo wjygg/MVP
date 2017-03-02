@@ -9,8 +9,11 @@ import android.widget.Toast;
 
 import com.example.administrator.mvp.R;
 import com.example.administrator.mvp.adapter.SomeDramaBanner;
+import com.example.administrator.mvp.adapter.SomeDrameList;
+import com.example.administrator.mvp.adapter.SomeDrameLocalClass;
+import com.example.administrator.mvp.adapter.SomeDrameNew;
+import com.example.administrator.mvp.adapter.SomeDrameSerializing;
 import com.example.administrator.mvp.adapter.section.SectionedRecyclerViewAdapter;
-import com.example.administrator.mvp.adapter.section.SomeDrameLocalClass;
 import com.example.administrator.mvp.base.BaseActivity;
 import com.example.administrator.mvp.entity.SomeDramaEntity;
 import com.example.administrator.mvp.presenter.SomeDramaActivityPresenter;
@@ -94,6 +97,11 @@ public class SomeDramaActivity extends BaseActivity<SomeDramaActivityPresenterLi
 
         mSectionedRecyclerViewAdapter.addSection(new SomeDrameLocalClass(SomeDramaActivity.this));
 
+        mSectionedRecyclerViewAdapter.addSection(new SomeDrameSerializing(SomeDramaActivity.this,someDramaEntity.getResult().getSerializing()));
+
+        mSectionedRecyclerViewAdapter.addSection(new SomeDrameNew(SomeDramaActivity.this,someDramaEntity.getResult().getPrevious().getSeason(),someDramaEntity.getResult().getPrevious().getList()));
+
+        mSectionedRecyclerViewAdapter.addSection(new SomeDrameList(SomeDramaActivity.this,someDramaEntity.getResult().getSerializing()));
         GridLayoutManager mGridLayoutManager = new GridLayoutManager(SomeDramaActivity.this, 3);
         mGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
 

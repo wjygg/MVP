@@ -26,6 +26,8 @@ public abstract  class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycl
         this.datas = datas;
     }
 
+
+
     @Override
     public int getItemViewType(int position) {
 

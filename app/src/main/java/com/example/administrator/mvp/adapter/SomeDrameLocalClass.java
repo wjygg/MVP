@@ -1,4 +1,4 @@
-package com.example.administrator.mvp.adapter.section;
+package com.example.administrator.mvp.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.administrator.mvp.R;
+import com.example.administrator.mvp.adapter.section.StatelessSection;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;

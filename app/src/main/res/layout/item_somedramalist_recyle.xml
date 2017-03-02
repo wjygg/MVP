@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_tuijian"
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
+        <TextView
+            android:layout_toRightOf="@id/img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="番剧推荐"
+            android:textColor="@color/font_normal"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/recycleview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+</LinearLayout>
